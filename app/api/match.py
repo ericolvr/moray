@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.domain.match import Match
 from app.application.match_service import MatchService
-from app.infra.mysql_match_repository import MySQLMatchRepository
+from app.infra.repositories.match_repository import MatchRepository
 from app.infra.db import get_db
 
 
@@ -12,7 +12,7 @@ match_router = APIRouter(
 
 
 def get_match_service(db: Session = Depends(get_db)) -> MatchService:
-    return MatchService(MySQLMatchRepository(db))
+    return MatchService(MatchRepository(db))
 
 
 @match_router.post("/")

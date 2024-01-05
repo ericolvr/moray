@@ -20,7 +20,7 @@ class CompetitorModel(Base):
         )
 
 
-class MySQLCompetitorRepository(CompetitorRepository):
+class CompetitorRepository(CompetitorRepository):
     def __init__(self, session: Session):
         self.session = session
 

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.domain.tournament import Tournament
 from app.application.tournament_service import TournamentService
-from app.infra.mysql_tournament_repository import MySQLTournamentRepository
+from app.infra.repositories.tournament_repository import TournamentRepository
 from app.infra.db import get_db
 
 tournament_router = APIRouter(
@@ -11,7 +11,7 @@ tournament_router = APIRouter(
 
 
 def get_tournament_service(db: Session = Depends(get_db)) -> TournamentService:
-    return TournamentService(MySQLTournamentRepository(db))
+    return TournamentService(TournamentRepository(db))
 
 
 @tournament_router.post("/")

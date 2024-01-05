@@ -22,7 +22,7 @@ class MatchModel(Base):
         )
 
 
-class MySQLMatchRepository(MatchRepository):
+class MatchRepository(MatchRepository):
     def __init__(self, session: Session):
         self.session = session
 

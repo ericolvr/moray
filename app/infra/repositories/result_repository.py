@@ -22,7 +22,7 @@ class ResultModel(Base):
         )
 
 
-class MySQLResultRepository(ResultRepository):
+class ResultRepository(ResultRepository):
     def __init__(self, session: Session):
         self.session = session
 

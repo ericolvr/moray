@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.domain.competitor import Competitor
 from app.application.competitor_service import CompetitorService
-from app.infra.mysql_competitor_repository import MySQLCompetitorRepository
+from app.infra.repositories.competitor_repository import CompetitorRepository
 from app.infra.db import get_db
 
 
@@ -12,7 +12,7 @@ competitor_router = APIRouter(
 
 
 def get_competitor_service(db: Session = Depends(get_db)) -> CompetitorService:
-    return CompetitorService(MySQLCompetitorRepository(db))
+    return CompetitorService(CompetitorRepository(db))
 
 
 @competitor_router.post("/")

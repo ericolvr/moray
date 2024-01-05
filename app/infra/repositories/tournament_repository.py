@@ -19,7 +19,7 @@ class TournamentModel(Base):
         )
 
 
-class MySQLTournamentRepository(TournamentRepository):
+class TournamentRepository(TournamentRepository):
     def __init__(self, session: Session):
         self.session = session
 

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7.22
+    container_name: moray-mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: moray
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+       - db_data:/var/lib/mysql
+
+  # web:
+  #   build: .
+  #   command: uvicorn main:app --host 0.0.0.0 --port 8000
+  #   volumes:
+  #     - .:/app
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - db
+
+volumes:
+  db_data:
+    driver: local
